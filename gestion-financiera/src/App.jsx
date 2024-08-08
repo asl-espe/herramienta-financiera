@@ -2,8 +2,11 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Dashboard from '../public/components/Dashboard'
-
+import Dashboard from './components/Dashboard'
+import Navbar from './components/Navbar'
+import InputField from './components/InputField'
+import TextAreaField from './components/TextAreaField'
+import SelectField from './components/SelectField'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -32,6 +35,21 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <InputField />
+      <br /> <br />
+      <TextAreaField />
+      
+      <SelectField
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          options={[
+            { value: '', label: 'Select Category' },
+            { value: 'category1', label: 'Category 1' },
+            { value: 'category2', label: 'Category 2' }
+          ]}
+        />
     </>
   )
 }
