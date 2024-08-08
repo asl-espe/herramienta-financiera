@@ -18,6 +18,26 @@ app.post('/api/inventario', (req, res) => {
     res.status(201).json(producto);
 });
 
+app.put('/api/inventario/:id', (req, res) => {
+    const id = req.params.id;
+    const productoActualizado = req.body;
+    let productoEncontrado = false;
+
+    inventario = inventario.map(producto => {
+        if (producto.id === id) {
+            productoEncontrado = true;
+            return { ...producto, ...productoActualizado };
+        }
+        return producto;
+    });
+
+    if (productoEncontrado) {
+        res.json({ message: 'Producto actualizado', producto: productoActualizado });
+    } else {
+        res.status(404).json({ message: 'Producto no encontrado' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
