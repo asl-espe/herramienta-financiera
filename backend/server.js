@@ -31,6 +31,8 @@ app.put('/api/inventario/:id', (req, res) => {
     }
 });
 
+app.use(alertasRouter);
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
