@@ -17,7 +17,7 @@ app.post('/api/inventario', (req, res) => {
     inventario.push(producto);
     res.status(201).json(producto);
 });
-
+// Actualizacion de producto
 app.put('/api/inventario/:id', (req, res) => {
     const id = req.params.id;
     const productoActualizado = req.body;
