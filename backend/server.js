@@ -37,14 +37,38 @@ app.post('/api/inventario', async (req, res) => {
     }
 });
 
+
 // Actualizar un producto existente en el inventario
 app.put('/api/inventario/:id', async (req, res) => {
     const { id } = req.params;
-    const { nombre, cantidad, precio, descripcion } = req.body;
+    const { 
+        producto, 
+        cantidad, 
+        peso_volumen, 
+        precio, 
+        proveedor, 
+        almacen 
+    } = req.body;
+
     try {
-        const updated = await db('inventario').where({ id }).update({ nombre, cantidad, precio, descripcion });
-        if (updated) {
-            res.json({ message: 'Producto actualizado', id, nombre, cantidad, precio, descripcion });
+        const query = `
+            UPDATE inventario SET producto = ?, cantidad = ?, peso_volumen = ?, precio = ?, proveedor = ?, almacen = ? WHERE id = ?
+        `;
+        // Ejecuta la consulta con los valores correspondientes
+        const result = await db.raw(query, [
+            producto, 
+            cantidad, 
+            JSON.stringify(peso_volumen), 
+            precio, 
+            JSON.stringify(proveedor), 
+            almacen,
+            id
+        ]);
+
+        if (result.rowCount > 0) {
+            res.json({ 
+                message: 'Producto actualizado', id, producto, cantidad, peso_volumen, precio, proveedor, almacen 
+            });
         } else {
             res.status(404).json({ message: 'Producto no encontrado' });
         }
@@ -52,6 +76,7 @@ app.put('/api/inventario/:id', async (req, res) => {
         res.status(500).json({ message: 'Error al actualizar el producto', error });
     }
 });
+
 //eliminar producto
 app.delete('/api/inventario/:id', async (req, res) => {
     const { id } = req.params;
