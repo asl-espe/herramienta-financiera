@@ -52,6 +52,22 @@ app.put('/api/inventario/:id', async (req, res) => {
         res.status(500).json({ message: 'Error al actualizar el producto', error });
     }
 });
+//eliminar producto
+app.delete('/api/inventario/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const deleted = await db('inventario').where({ id }).del();
+        if (deleted) {
+            res.json({ message: 'Producto eliminado', id });
+        } else {
+            res.status(404).json({ message: 'Producto no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error al eliminar el producto', error });
+    }
+});
+
+
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
