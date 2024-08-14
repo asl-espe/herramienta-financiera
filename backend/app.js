@@ -70,7 +70,10 @@ app.delete('/products/:id', (req, res) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ad55dfa (Conflicto en merge app.js)
 // Aumentar la cantidad de un producto en el inventario
 app.post('/products/:id/add', (req, res) => {
     const productId = req.params.id;
@@ -114,7 +117,12 @@ app.post('/products/:id/remove', (req, res) => {
 });
 
 
+<<<<<<< HEAD
 >>>>>>> 7b318e0 (Sincronizacion con rama dev)
+=======
+=======
+>>>>>>> 2161d5b (agregada base conexion para provedores y materiales)
+>>>>>>> ad55dfa (Conflicto en merge app.js)
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
