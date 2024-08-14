@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 
@@ -20,3 +21,11 @@ connection.connect((err) => {
 });
 
 module.exports = connection;
+=======
+const knex = require('knex');
+const config = require('./knexfile.js');  // Asegúrate de que la ruta sea correcta
+
+const db = knex(config.development);
+
+module.exports = db;
+>>>>>>> 8693e49 (Conexion_logica delinventario)
