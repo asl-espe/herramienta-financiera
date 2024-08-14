@@ -69,6 +69,52 @@ app.delete('/products/:id', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
+=======
+// Aumentar la cantidad de un producto en el inventario
+app.post('/products/:id/add', (req, res) => {
+    const productId = req.params.id;
+    const { quantity } = req.body;
+    
+    const query = 'UPDATE products SET quantity = quantity + ? WHERE id = ?';
+    db.query(query, [quantity, productId], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err });
+        }
+        res.json({ message: 'Product quantity increased successfully' });
+    });
+});
+
+// Reducir la cantidad de un producto en el inventario
+app.post('/products/:id/remove', (req, res) => {
+    const productId = req.params.id;
+    const { quantity } = req.body;
+
+    // Primero, verificamos que haya suficiente inventario
+    db.query('SELECT quantity FROM products WHERE id = ?', [productId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err });
+        }
+
+        const currentQuantity = results[0].quantity;
+
+        if (currentQuantity < quantity) {
+            return res.status(400).json({ error: 'Not enough stock available' });
+        }
+
+        // Si hay suficiente inventario, reducimos la cantidad
+        const query = 'UPDATE products SET quantity = quantity - ? WHERE id = ?';
+        db.query(query, [quantity, productId], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: err });
+            }
+            res.json({ message: 'Product quantity decreased successfully' });
+        });
+    });
+});
+
+
+>>>>>>> 7b318e0 (Sincronizacion con rama dev)
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
