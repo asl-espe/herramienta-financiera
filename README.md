@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Herramienta Financiera
 Aplicación web dedicada para realizar el calculo de precios de venta en productos elaborados
 
@@ -36,3 +37,7 @@ Instala las dependencias e inicia el proyecto:
 npm install
 npm run dev
 ```
+=======
+# herramienta-financiera
+Aplicación web dedicada para realizar el calculo de precios de venta en productos elaborados
+>>>>>>> 50c16aeb22de6667dc735ffe45c3e909d580ecbb
