@@ -87,26 +87,23 @@ app.post('/products/:id/add', (req, res) => {
 app.post('/products/:id/remove', (req, res) => {
     const productId = req.params.id;
     const { quantity } = req.body;
+    const consult = 1;
 
     // Primero, verificamos que haya suficiente inventario
     db.query('SELECT quantity FROM products WHERE id = ?', [productId], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err });
         }
-
         const currentQuantity = results[0].quantity;
-
         if (currentQuantity < quantity) {
-            return res.status(400).json({ error: 'Not enough stock available' });
+            return res.status(400).json({ error: 'No existe stock' });
         }
-
-        // Si hay suficiente inventario, reducimos la cantidad
         const query = 'UPDATE products SET quantity = quantity - ? WHERE id = ?';
         db.query(query, [quantity, productId], (err, result) => {
             if (err) {
                 return res.status(500).json({ error: err });
             }
-            res.json({ message: 'Product quantity decreased successfully' });
+            res.json({ message: 'La cantida del producto es adecuada' });
         });
     });
 });
