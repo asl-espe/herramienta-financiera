@@ -1,0 +1,54 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Debug
+*.log
+
+# React
+build/
+dist/
+.cache/
+.vite/
+
+# Miscellaneous
+.DS_Store
+
+# MySQL
+*.sql
+*.db
+*.sqlite
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Coverage directory used by tools like istanbul
+coverage/
