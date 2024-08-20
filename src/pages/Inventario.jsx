@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "../components/alerts";
 import "./inventario.min.css";
 
 export default function Inventario() {
