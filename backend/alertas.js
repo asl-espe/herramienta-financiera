@@ -25,3 +25,6 @@ router.get('/api/alertas', (req, res) => {
 });
 
 module.exports = router;
+
+
+//Modulo para alertas desde el backend

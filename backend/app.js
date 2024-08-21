@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 // Obtener todos los productos
+//Se obtiene los productos de base de la base de datos
 app.get('/products', (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
         if (err) {
