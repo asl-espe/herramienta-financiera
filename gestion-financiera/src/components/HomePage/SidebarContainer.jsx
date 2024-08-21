@@ -5,7 +5,7 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="logo">
-        {/* Aquí puedes poner una imagen del logo */}
+        
         <img src="logo.png" alt="Logo" />
       </div>
       <nav className="menu">

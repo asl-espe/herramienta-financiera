@@ -1,15 +1,15 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
 import './App.css';
+
+import ReportPDF from './components/Reportes/viewReportes';
 
 function App() {
   return (
     <div className="app-container">
-      <Navbar />
-      <div className="main-content">
-        <h1>Slogan</h1>
-        <p>Pequeña descripción del sistema</p>
-      </div>
+      
+      <ReportPDF />
+      
     </div>
   );
 }

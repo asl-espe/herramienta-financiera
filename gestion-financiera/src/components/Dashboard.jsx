@@ -1,11 +1,14 @@
 import React from 'react';
+import Navbar from './Navbar';
 
 const Dashboard = () => {
   return (
-    <div className="dashboard">
-      <h2>Dashboard</h2>
-      <p>Here you can view various statistics and reports.</p>
-      {/* Aquí es donde podemos agregar más contenido y componentes como gráficos */}
+    <div className="app-container">
+      <Navbar />
+      <div className="main-content">
+        <h1>Slogan</h1>
+        <p>Pequeña descripción del sistema</p>
+      </div>
     </div>
   );
 };
