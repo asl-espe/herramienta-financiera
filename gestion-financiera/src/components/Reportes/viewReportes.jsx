@@ -12,7 +12,7 @@ import FormLabel from '@mui/material/FormLabel';
 const ReportPDF= () => {
   return (
     <div className="app-container">
-      <Navbar />
+      
       <div class="container" >
         <h1>Reportes</h1>
         <div>
