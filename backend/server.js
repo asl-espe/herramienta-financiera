@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const inventoryRoutes = require('./gestion-inventario');
+const calculadoraRouter = require('./routes/calculadora');
 
 const app = express();
 
@@ -26,6 +27,9 @@ connection.connect(err => {
 
 // Usar las rutas de inventario, pasándole la conexión
 app.use('/api/inventory', inventoryRoutes(connection));
+
+// Modificar la ruta de la calculadora para que reciba la conexión
+app.use('/api', calculadoraRouter(connection));
 
 // Iniciar el servidor
 app.listen(3000, () => {

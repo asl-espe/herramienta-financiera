@@ -1,20 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Inventory from './components/Inventory';
+import Calculator from './components/Calculator';
+import Navbar from './components/Navbar';
 
-const App = () => (
+function App() {
+  return (
     <Router>
-        <div className="d-flex">
-            <Navbar />
-            <div className="container mt-3">
-                <Routes>
-                    <Route path="/inventory" element={<Inventory />} />
-                    {/* Rutas para otras secciones */}
-                </Routes>
-            </div>
-        </div>
+      <div className="app-container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Inventory />} />
+          <Route path="/calculator" element={<Calculator />} />
+        </Routes>
+      </div>
     </Router>
-);
+  );
+}
 
 export default App;
