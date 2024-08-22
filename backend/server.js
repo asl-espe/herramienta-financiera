@@ -71,3 +71,8 @@ app.post("/api/inventario", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+app.post("/api/inventarios/:idProduct", (req,res)=>{
+  res.json(producto);
+  
+})

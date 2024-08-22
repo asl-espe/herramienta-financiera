@@ -2,6 +2,12 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+
+module.exports = {
+    connection,     // Exporta la conexión MySQL para su uso en otros módulos
+    knexInstance    // Exporta la instancia de Knex para consultas
+};
+
 // Importar las librerías necesarias
 const mysql = require('mysql2');
 const knex = require('knex');
@@ -26,8 +32,3 @@ connection.connect((err) => {
 
 // Configurar y exportar el objeto Knex para interactuar con la base de datos
 const knexInstance = knex(config);
-
-module.exports = {
-    connection,     // Exporta la conexión MySQL para su uso en otros módulos
-    knexInstance    // Exporta la instancia de Knex para consultas
-};
