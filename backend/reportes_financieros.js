@@ -1,3 +1,5 @@
+const XLSX = require('xlsx');
+
 // Función para calcular el precio final por unidad
 function calcularPrecioFinal(materiaPrima, costosAdicionales, margen) {
     const costoTotal = materiaPrima + costosAdicionales;
@@ -43,6 +45,31 @@ function generarReporteFinanciero(materiaPrima, costosAdicionales, margen, unida
     };
 }
 
+// Función para exportar el reporte financiero a Excel
+function exportarReporteExcel(reporte) {
+    const datos = [
+        ["Concepto", "Valor"],
+        ["Precio por Unidad", reporte.precioPorUnidad],
+        ["Total Ingresos", reporte.totalIngresos],
+        ["Total Gastos", reporte.totalGastos],
+        ["Balance", reporte.balance]
+    ];
+
+    // Crear un nuevo libro de Excel
+    const libro = XLSX.utils.book_new();
+
+    // Crear una hoja de Excel con los datos
+    const hoja = XLSX.utils.aoa_to_sheet(datos);
+
+    // Agregar la hoja al libro
+    XLSX.utils.book_append_sheet(libro, hoja, 'Reporte Financiero');
+
+    // Escribir el archivo Excel
+    XLSX.writeFile(libro, 'reporte_financiero.xlsx');
+
+    console.log("Reporte financiero exportado a 'reporte_financiero.xlsx'.");
+}
+
 // Ejemplo de uso:
 const materiaPrima = 10; // Costo de materia prima por unidad
 const costosAdicionales = 5; // Costos adicionales por unidad
@@ -56,3 +83,6 @@ console.log(`Precio por Unidad: $${reporte.precioPorUnidad}`);
 console.log(`Total Ingresos: $${reporte.totalIngresos}`);
 console.log(`Total Gastos: $${reporte.totalGastos}`);
 console.log(`Balance: $${reporte.balance}`);
+
+// Exportar a Excel
+exportarReporteExcel(reporte);
