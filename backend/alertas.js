@@ -26,5 +26,5 @@ router.get('/api/alertas', (req, res) => {
 
 module.exports = router;
 
-
+//se tiene que envir al frontend 
 //Modulo para alertas desde el backend
