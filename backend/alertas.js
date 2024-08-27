@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('./db');
 
-// Nivel mínimo de inventario para generar una alerta
+
 const NIVEL_MINIMO = 10;
 
 // Función para verificar los niveles de inventario y generar alertas
@@ -26,5 +26,3 @@ router.get('/api/alertas', (req, res) => {
 
 module.exports = router;
 
-//se tiene que envir al frontend 
-//Modulo para alertas desde el backend
