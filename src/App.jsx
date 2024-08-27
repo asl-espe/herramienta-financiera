@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Calculadora from "./pages/Calculadora";
-import Inventario from "./pages/Inventario";
-import Catalogo from "./pages/Catalogo";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Calculadora from "./pages/Calculadora";
+import Catalogo from "./pages/Catalogo";
+import Home from "./pages/Home";
+import Inventario from "./pages/Inventario";
 
 function App() {
   return (
