@@ -1,27 +1,14 @@
 import React from 'react';
 import './App.css';
-import ReportPDF from './components/Reportes/viewReportes';
-import Dashboard from './components/Dashboard.jsx'
-import Navbar from './components/Navbar';
-import viewReportes from './components/Reportes/viewReportes.jsx'
-import {
-  BrowserRouter as Router, 
-  Routes,
-  Route
-} from "react-router-dom";
+import Navbar from './components/Navbar.jsx';  
+import reportes from './components/Reportes/reportes.jsx'
 
 function App() {
   return (
-    <Router>
-      <Navbar/>
-
-      <Routes>
-        <Route path="/" element={<Dashboard/>}/>
-        <Route path="/inventario" element={<viewReportes/>}/>
-      </Routes>
-
-    </Router>
-    
+    <div>
+      <reportes />
+      
+    </div>
   );
 }
 
