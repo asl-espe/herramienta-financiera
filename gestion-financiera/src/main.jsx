@@ -10,22 +10,7 @@ import {
 import Dashboard from "./components/Dashboard.jsx";  
 import ReportPDF from "./components/Reportes/viewReportes.jsx";  
 
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <App />,  
-    children: [
-      {
-        path: "/",  
-        element: <Dashboard />,  
-      },
-      {
-        path: "inventario",  
-        element: <ReportPDF />,  
-      },
-    ],
-  },
-]);
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
