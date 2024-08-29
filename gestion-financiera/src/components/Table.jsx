@@ -26,12 +26,12 @@ const Table = () => {
           {products.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
-              <td>{product.nOMBRE}</td>
+              <td>{product.nombre}</td>
               <td>{product.cantidad}</td>
-              <td>{product.weight}</td>
-              <td>{product.price}</td>
-              <td>{product.supplier}</td>
-              <td>{product.createdAt}</td>
+              <td>{product.peso}</td>
+              <td>{product.precio}</td>
+              <td>{product.proveedor}</td>
+              <td>{product.fechaCreacion}</td>
             </tr>
           ))}
         </tbody>
