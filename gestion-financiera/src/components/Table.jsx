@@ -15,7 +15,7 @@ const Table = () => {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Quantity</th>
+            <th>Cantidad</th>
             <th>Weight</th>
             <th>Price</th>
             <th>Supplier</th>
@@ -27,7 +27,7 @@ const Table = () => {
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.nOMBRE}</td>
-              <td>{product.quantity}</td>
+              <td>{product.cantidad}</td>
               <td>{product.weight}</td>
               <td>{product.price}</td>
               <td>{product.supplier}</td>
