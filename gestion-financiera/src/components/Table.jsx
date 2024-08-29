@@ -16,7 +16,7 @@ const Table = () => {
             <th>ID</th>
             <th>Nombre</th>
             <th>Cantidad</th>
-            <th>Weight</th>
+            <th>Peso</th>
             <th>Price</th>
             <th>Supplier</th>
             <th>Created At</th>
