@@ -26,7 +26,7 @@ const Table = () => {
           {products.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
-              <td>{product.name}</td>
+              <td>{product.nOMBRE}</td>
               <td>{product.quantity}</td>
               <td>{product.weight}</td>
               <td>{product.price}</td>
