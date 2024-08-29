@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './Calculadora.css'; // Aquí puedes agregar tus estilos personalizados
 
 export default function Inventario() {
@@ -12,6 +12,7 @@ export default function Inventario() {
     precio: '',
     almacen: '',
   });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     axios.get("http://localhost:3001/api/inventario")
@@ -29,13 +30,26 @@ export default function Inventario() {
     });
   };
 
+  const validate = () => {
+    let validationErrors = {};
+    if (!nuevoProducto.producto) validationErrors.producto = "El producto es requerido.";
+    if (!nuevoProducto.proveedor) validationErrors.proveedor = "El proveedor es requerido.";
+    if (!nuevoProducto.cantidad || nuevoProducto.cantidad <= 0) validationErrors.cantidad = "La cantidad debe ser un número positivo.";
+    if (!nuevoProducto.precio || nuevoProducto.precio <= 0) validationErrors.precio = "El precio debe ser un número positivo.";
+    if (!nuevoProducto.almacen) validationErrors.almacen = "El almacén es requerido.";
+    setErrors(validationErrors);
+    return Object.keys(validationErrors).length === 0;
+  };
+
   const handleAdd = () => {
-    axios.post("http://localhost:3001/api/inventario", nuevoProducto)
-      .then(response => {
-        setInventario([...inventario, response.data]);
-        clearForm();
-      })
-      .catch(error => console.error(error));
+    if (validate()) {
+      axios.post("http://localhost:3001/api/inventario", nuevoProducto)
+        .then(response => {
+          setInventario([...inventario, response.data]);
+          clearForm();
+        })
+        .catch(error => console.error(error));
+    }
   };
 
   const clearForm = () => {
@@ -47,6 +61,7 @@ export default function Inventario() {
       precio: '',
       almacen: '',
     });
+    setErrors({});
   };
 
   return (
@@ -60,6 +75,8 @@ export default function Inventario() {
           value={nuevoProducto.producto}
           onChange={handleChange}
         />
+        {errors.producto && <span className="error">{errors.producto}</span>}
+        
         <input
           type="text"
           name="proveedor"
@@ -67,6 +84,8 @@ export default function Inventario() {
           value={nuevoProducto.proveedor}
           onChange={handleChange}
         />
+        {errors.proveedor && <span className="error">{errors.proveedor}</span>}
+        
         <input
           type="number"
           name="cantidad"
@@ -74,6 +93,8 @@ export default function Inventario() {
           value={nuevoProducto.cantidad}
           onChange={handleChange}
         />
+        {errors.cantidad && <span className="error">{errors.cantidad}</span>}
+        
         <select
           name="unidadMedida"
           value={nuevoProducto.unidadMedida}
@@ -83,6 +104,7 @@ export default function Inventario() {
           <option value="litros">litros</option>
           <option value="metros">metros</option>
         </select>
+        
         <input
           type="number"
           step="0.01"
@@ -91,6 +113,8 @@ export default function Inventario() {
           value={nuevoProducto.precio}
           onChange={handleChange}
         />
+        {errors.precio && <span className="error">{errors.precio}</span>}
+        
         <input
           type="number"
           name="almacen"
@@ -98,6 +122,8 @@ export default function Inventario() {
           value={nuevoProducto.almacen}
           onChange={handleChange}
         />
+        {errors.almacen && <span className="error">{errors.almacen}</span>}
+        
         <button className="add-button" onClick={handleAdd}>Agregar</button>
         <button className="clear-button" onClick={clearForm}>Limpiar</button>
       </div>
