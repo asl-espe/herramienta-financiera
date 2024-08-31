@@ -8,6 +8,29 @@ const ProductForm = () => {
     quantity: '',
   });
 
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const errors = {};
+    if (!product.name.trim()) {
+      errors.name = 'El nombre del producto es obligatorio.';
+    }
+
+    if (!product.description.trim()) {
+      errors.description = 'La descripción es obligatoria.';
+    }
+
+    if (!product.price || product.price <= 0) {
+      errors.price = 'El precio debe ser un número positivo.';
+    }
+
+    if (!product.quantity || product.quantity < 1) {
+      errors.quantity = 'La cantidad en inventario debe ser al menos 1.';
+    }
+
+    return errors;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduct({
@@ -18,15 +41,23 @@ const ProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes manejar el envío del formulario, como guardar el producto en una base de datos
+
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     console.log('Producto registrado:', product);
-    // Reiniciar el formulario
+    
     setProduct({
       name: '',
       description: '',
       price: '',
       quantity: '',
     });
+
+    setErrors({});
   };
 
   return (
@@ -41,6 +72,7 @@ const ProductForm = () => {
           onChange={handleChange}
           required
         />
+        {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
       </div>
       <div>
         <label htmlFor="description">Descripción:</label>
@@ -51,6 +83,7 @@ const ProductForm = () => {
           onChange={handleChange}
           required
         ></textarea>
+        {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
       </div>
       <div>
         <label htmlFor="price">Precio:</label>
@@ -64,6 +97,7 @@ const ProductForm = () => {
           min="0.01"
           step="0.01"
         />
+        {errors.price && <p style={{ color: 'red' }}>{errors.price}</p>}
       </div>
       <div>
         <label htmlFor="quantity">Cantidad en Inventario:</label>
@@ -76,6 +110,7 @@ const ProductForm = () => {
           required
           min="1"
         />
+        {errors.quantity && <p style={{ color: 'red' }}>{errors.quantity}</p>}
       </div>
       <button type="submit">Registrar Producto</button>
     </form>
